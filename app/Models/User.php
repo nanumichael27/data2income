@@ -76,9 +76,9 @@ class User extends Authenticatable
         $tx_ref = Transaction::generateTransactionRefrence();
         $transaction = new Transaction([
             "amount" => $request->amount,
-            "description" => 'fund account',
+            "description" => $request->description,
             "payment_method" => 'flutterwave',
-            "transaction_type" => 'credit',
+            "transaction_type" => 'CR',
             "tx_ref" => $tx_ref,
         ]);
 
@@ -154,5 +154,10 @@ class User extends Authenticatable
                 return null;
                 break;
         }
+    }
+
+    public function upgradeToTop(){
+        $this->level = config('enums.levels.top');
+        return $this->save();
     }
 }

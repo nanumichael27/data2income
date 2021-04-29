@@ -33,6 +33,8 @@ Route::get('/makepayment', [PaymentController::class, 'index'])->name('makepayme
 Route::post('/createtransaction', [PaymentController::class, 'createTransaction'])->name('createtransaction');
 
 Route::post('/verifytransaction', [PaymentController::class, 'verifyTransaction'])->name('verifytransaction');
+Route::post('/verifyupgrade', [PaymentController::class, 'verifyUpgrade'])->name('verifyupgrade');
+
 
 Route::get('/user/availablejobs', [UserController::class, 'jobs'])->name('availablejobs');
 Route::post('/user/createjoborder/', [UserController::class, 'createJobOrder'])->name('createjoborder');
@@ -43,3 +45,4 @@ Route::get('/admin/postjob/', [AdminController::class, 'postJob'])->name('postjo
 Route::post('/admin/postjob/', [AdminController::class, 'createJob'])->name('postjob');
 Route::get('/admin/users/', [AdminController::class, 'viewUsers'])->name('viewusers');
 Route::get('/admin/user/{id}', [AdminController::class, 'viewUser'])->name('viewuser');
+Route::get('/admin/settings/', [AdminController::class, 'settings'])->name('settings');

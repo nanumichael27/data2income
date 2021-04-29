@@ -2,8 +2,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('dashboard')}}" class="brand-link">
-      <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
+      <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Data2Income</span>
     </a>
 
@@ -25,7 +24,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="{{route('dashboard')}}" class="nav-link active">
+            <a href="{{route('dashboard')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -34,71 +33,77 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('dashboard')}}" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
+                <a href="{{route('dashboard')}}" class="nav-link">
+                  <i class="fas fa-tachometer-alt nav-icon"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('userprofile')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-user nav-icon"></i>
                   <p>Profile</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
+                  <p></p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="" class="nav-link ">
+              <i class="nav-icon fas fa-hammer"></i>
               <p>
                 Jobs
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <li class="nav-item">
+              <li class="nav-item">
                 <a href="{{route('availablejobs')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-lock-open nav-icon"></i>
                   <p>Available Jobs</p>
                 </a>
-            </li>
-            <li class="nav-item">
-                  <a href="{{route('completedjobs')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Completed jobs</p>
-                  </a>
-            </li>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('completedjobs')}}" class="nav-link">
+                  <i class="fas fa-flag-checkered nav-icon"></i>
+                  <p>Completed jobs</p>
+                </a>
+              </li>
             </ul>
           </li>
 
           @can('isAdmin')
           <li class="nav-item has-treeview menu-open">
-            <a href="" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-users-cog"></i>
               <p>
                 Admin
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <li class="nav-item">
+              <li class="nav-item">
                 <a href="{{route('postjob')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-plus nav-icon"></i>
                   <p>Create Job</p>
                 </a>
-            </li>
-            <li class="nav-item">
+              </li>
+              <li class="nav-item">
                 <a href="{{route('viewusers')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-users nav-icon"></i>
                   <p>View Users</p>
                 </a>
-            </li>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('settings')}}" class="nav-link">
+                  <i class="fas fa-cogs nav-icon"></i>
+                  <p>Settings</p>
+                </a>
+              </li>
             </ul>
           </li>
           @endcan
@@ -113,11 +118,11 @@
             </a>
           </li> -->
           <li class="nav-item">
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();" class="nav-link">
-                  <i class="fa fa-power-off nav-icon"></i>
-                  <p>{{__('Logout')}}</p>
-                </a>
+              <i class="fa fa-power-off nav-icon"></i>
+              <p>{{__('Logout')}}</p>
+            </a>
           </li>
         </ul>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

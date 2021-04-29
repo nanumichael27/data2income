@@ -2,7 +2,7 @@
 <script>
     Transaction = {
         tx_ref: null,
-        amount: null,
+        amount: "{{$settings->activation_price}}",
         initiateTransaction: function(amount) {
             this.amount = "{{$settings->activation_price}}";
             this.generateRefrence();
@@ -16,7 +16,12 @@
                 data: [{
                     name: 'amount',
                     value: amount,
-                }],
+                },
+                {
+                    name: 'description',
+                    value: "{{$transactionDescription}}"
+                }
+            ],
                 success: (data) => {
                     Transaction.tx_ref = data;
                     makePayment();
@@ -88,7 +93,7 @@
             customizations: {
                 title: "{{$transactionTitle}}",
                 description: "{{$transactionDescription}}",
-                logo: "https://stakescrypto.com/asset/images/logo-gold.png",
+                logo: "https://data2income.com/images/favicon.ico",
             },
         });
 

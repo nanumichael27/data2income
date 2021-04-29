@@ -32,4 +32,8 @@ class AdminController extends Controller
         $user = User::findOrFail($id);
         return view('admin.user', ['user' => $user]);
     }
+
+    public function settings(){
+        return view('admin.settings');
+    }
 }

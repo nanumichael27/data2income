@@ -16,8 +16,8 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->float('top_level_price');
-            $table->float('activation_price');
+            $table->float('top_level_price')->default(0.00);
+            $table->float('activation_price')->default(0.00);
         });
     }
 

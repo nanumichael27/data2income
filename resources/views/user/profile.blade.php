@@ -208,7 +208,7 @@
                                         <p class="text-muted text-center">₦{{$settings->top_level_price}}</p>
                                         
                                         @if(Auth()->user()->level < config('enums.levels.top'))
-                                        <p class="text-center"><button class="btn btn-success btn-rounded">Upgrade account to Top level</button></p>
+                                        <p class="text-center"><button class="btn btn-success btn-rounded" onClick="Transaction.initiateTransaction();">Upgrade account to Top level</button></p>
                                         @else
                                         <p class="text-muted text-center">This is your current plan</p>
                                         @endif
@@ -274,6 +274,11 @@
     </div><!-- /.modal-dialog -->
 </div>
 @endsection
+
+@php
+$transactionTitle = 'Account upgrade';
+$transactionDescription = 'Amount paid  to upgrade to top level';
+@endphp
 
 @section('js')
 <script>
@@ -429,13 +434,14 @@
         });
     });
 </script>
+
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 <script>
     Transaction = {
         tx_ref: null,
-        amount: null,
+        amount: "{{$settings->top_level_price}}",
         initiateTransaction: function(amount) {
-            this.amount = "{{$settings->activation_price}}";
+            this.amount = "{{$settings->top_level_price}}";
             this.generateRefrence();
             return this.tx_ref;
         },
@@ -447,7 +453,12 @@
                 data: [{
                     name: 'amount',
                     value: amount,
-                }],
+                },
+                {
+                    name: 'description',
+                    value: "{{$transactionDescription}}"
+                }
+            ],
                 success: (data) => {
                     Transaction.tx_ref = data;
                     makePayment();
@@ -460,20 +471,20 @@
             console.log(data);
             $.ajax({
                 type: 'POST',
-                url: "{{route('verifytransaction')}}",
+                url: "{{route('verifyupgrade')}}",
                 data: [{
                     name: 'transaction',
                     value: data
                 }],
                 success: (data) => {
                     if (data == "success") {
-                        swal("Good job!", "Transaction has be successfully processed", "success");
+                        swal("Good job!", "Congratulations, you just upgraded your account to the top level", "success");
                         setTimeout(() => {
-                            window.location = "{{route('dashboard')}}"
+                            window.location = "{{route('userprofile')}}"
                         }, 2000);
                     } else {
                         swal("Something went wrong!", data, 'error').then(() => {
-                            window.location = "{{route('dashboard')}}";
+                            window.location = "{{route('userprofile')}}";
                         });
                     }
                 }
@@ -483,7 +494,7 @@
 
     function makePayment() {
 
-        let amount = "500";
+        let amount = "{{$settings->top_level_price}}";
         let email = "{{Auth()->user()->email}}";
         let phone = "{{Auth()->user()->phone}}";
         let name = "{{Auth()->user()->name}}";
@@ -519,7 +530,7 @@
             customizations: {
                 title: "{{$transactionTitle}}",
                 description: "{{$transactionDescription}}",
-                logo: "https://stakescrypto.com/asset/images/logo-gold.png",
+                logo: "https://data2income.com/images/favicon.ico",
             },
         });
 
