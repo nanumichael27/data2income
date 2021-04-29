@@ -19,8 +19,8 @@ class CreateJobOrdersTable extends Migration
             // $table->string('job_order')->nullable();
             $table->string('username')->nullable();
             $table->string('status')->default('approved');
-            $table->string('job_id');
-            $table->string('user_id');
+            $table->foreignId('job_id')->onDeleteCascade();
+            $table->foreignId('user_id')->onDeleteCascade();
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -22,5 +23,13 @@ class AdminController extends Controller
         return Job::addJob($request);
     }
 
+    public function viewUsers(){
+        $users = User::all();
+        return view('admin.users', ['users' => $users]);
+    }
 
+    public function viewUser($id){
+        $user = User::findOrFail($id);
+        return view('admin.user', ['user' => $user]);
+    }
 }

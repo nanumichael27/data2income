@@ -15,10 +15,10 @@
                     <li class="nav-item">
                         <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Bank Details</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Bank Details</a>
-                    </li>
                     <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Account</a>
+                    </li>
+                    <!-- <li class="nav-item">
                         <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Settings</a>
                     </li> -->
                 </ul>
@@ -162,10 +162,85 @@
                             </div>
                         </form>
                     </div>
-                    <!-- <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
-                        Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna.
+                    <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
+                        <center><h3>Account Type</h3></center>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-body box-profile">
+                                        <h3 class="profile-username text-center">Basic</h3>
+
+                                        <p class="text-muted text-center">Free</p>
+                                        @if(Auth()->user()->level == config('enums.levels.basic'))
+                                        <p class="text-muted text-center">This is your current plan</p>
+                                        @endif
+
+                                        <ul class="list-group list-group-unbordered mb-3">
+                                            <li class="list-group-item">
+                                                <strong><i class="fa fa-check green"></i></strong>
+                                                <b></b> <a class="">All basic account benefits</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <strong><i class="fa fa-check green"></i></strong>
+                                                <b></b> <a class="">view and take on basic jobs</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <strong><i class="fa fa-check green"></i></strong>
+                                                <b></b> <a class="">One request for withdrawal every month</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <strong><i class="fa fa-check green"></i></strong>
+                                                <b></b> <a class="">Benefit</a>
+                                            </li>
+                                        </ul>
+
+                                        <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-body box-profile">
+                                        <h3 class="profile-username text-center">Top Level</h3>
+
+                                        <p class="text-muted text-center">₦{{$settings->top_level_price}}</p>
+                                        
+                                        @if(Auth()->user()->level < config('enums.levels.top'))
+                                        <p class="text-center"><button class="btn btn-success btn-rounded">Upgrade account to Top level</button></p>
+                                        @else
+                                        <p class="text-muted text-center">This is your current plan</p>
+                                        @endif
+
+                                        <ul class="list-group list-group-unbordered mb-3">
+                                            <li class="list-group-item">
+                                                <strong><i class="fa fa-check green"></i></strong>
+                                                <b></b> <a class="">view both basic and high paying jobs</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <strong><i class="fa fa-check green"></i></strong>
+                                                <b></b> <a class="">make multiple withdrawals per month</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <strong><i class="fa fa-check green"></i></strong>
+                                                <b></b> <a class="">receive prioritised messages from our support</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <strong><i class="fa fa-check green"></i></strong>
+                                                <b></b> <a class="">claim all your referrals</a>
+                                            </li>
+                                        </ul>
+
+                                        <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                        </div>
                     </div>
-                    <div class="tab-pane fade" id="custom-tabs-one-settings" role="tabpanel" aria-labelledby="custom-tabs-one-settings-tab">
+                    <!-- <div class="tab-pane fade" id="custom-tabs-one-settings" role="tabpanel" aria-labelledby="custom-tabs-one-settings-tab">
                         Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
                     </div> -->
                 </div>
@@ -208,79 +283,80 @@
     // });
 </script>
 <script>
+    function displayModal(modal) {
+        $(modal).modal().show();
+        return true;
+    }
 
-         function displayModal(modal){
-          $(modal).modal().show();
-          return true;
-      }
+    var resize = $('#upload-demo').croppie({
+        enableExif: false,
+        enableOrientation: false,
+        viewport: { // Default { width: 100, height: 100, type: 'square' } 
+            width: 200,
+            height: 200,
+            type: 'circle' //square
+        },
+        boundary: {
+            width: 210,
+            height: 210
+        }
+    });
 
-      var resize = $('#upload-demo').croppie({
-          enableExif: false,
-          enableOrientation: false,    
-          viewport: { // Default { width: 100, height: 100, type: 'square' } 
-              width: 200,
-              height: 200,
-              type: 'circle' //square
-          },
-          boundary: {
-              width: 210,
-              height: 210
-          }
-      });
-
-      $('#profile-picture').on('input', function () { 
+    $('#profile-picture').on('input', function() {
         displayModal('#profile-picture-modal');
-      var reader = new FileReader();
-        reader.onload = function (e) {
-          resize.croppie('bind',{
-            url: e.target.result
-          }).then(function(){
-            console.log('jQuery bind complete');
-          });
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            resize.croppie('bind', {
+                url: e.target.result
+            }).then(function() {
+                console.log('jQuery bind complete');
+            });
         }
         reader.readAsDataURL(this.files[0]);
     });
 
-    $('#upload-profile-picture').on('click', function (ev) {
-      resize.croppie('result', {
-        type: 'canvas',
-        size: 'viewport',
-        circle: false,
-      }).then(function (img) {
-        let previousDp = $('#dp').attr('src');
+    $('#upload-profile-picture').on('click', function(ev) {
+        resize.croppie('result', {
+            type: 'canvas',
+            size: 'viewport',
+            circle: false,
+        }).then(function(img) {
+            let previousDp = $('#dp').attr('src');
 
-        $.ajax({
-          url: "{{ route('updateprofile') }}",
-          type: "POST",
-          data: {"image":img},
-          beforeSend:function(){
-            $('#profile-picture-modal').modal('hide');
-            toastr.info('Uploading profile picture');
-            $("#dp").attr('src', 'dist/img/loading_dp.gif');
-            $('.user-image').attr('src', 'dist/img/loading_dp.gif');
-            $('.img-circle').attr('src', 'dist/img/loading_dp.gif');
+            $.ajax({
+                url: "{{ route('updateprofile') }}",
+                type: "POST",
+                data: {
+                    "image": img
+                },
+                beforeSend: function() {
+                    $('#profile-picture-modal').modal('hide');
+                    toastr.info('Uploading profile picture');
+                    $("#dp").attr('src', 'dist/img/loading_dp.gif');
+                    $('.user-image').attr('src', 'dist/img/loading_dp.gif');
+                    $('.img-circle').attr('src', 'dist/img/loading_dp.gif');
 
-          },
-          success: function (data) {
-            if(data.trim() == 'success'){
-              $("#dp").attr('src', img);
-              $('.user-image').attr('src', img);
-              $('.img-circle').attr('src', img); 
-              toastr.clear();
-              toastr.success('Profile picture updated', "SUCCESSFUL!");
-            }
+                },
+                success: function(data) {
+                    if (data.trim() == 'success') {
+                        $("#dp").attr('src', img);
+                        $('.user-image').attr('src', img);
+                        $('.img-circle').attr('src', img);
+                        toastr.clear();
+                        toastr.success('Profile picture updated', "SUCCESSFUL!");
+                    }
 
-          },
-          error: function(){
-            toastr.clear();
-            $("#dp").attr('src', previousDp);
-            $('.user-image').attr('src', previousDp);
-            $('.img-circle').attr('src', previousDp); 
-            swal('Unsuccessful!', 'Please check your network connection', 'error')
+                },
+                error: function() {
+                    toastr.clear();
+                    $("#dp").attr('src', previousDp);
+                    $('.user-image').attr('src', previousDp);
+                    $('.img-circle').attr('src', previousDp);
+                    swal('Unsuccessful!', 'Please check your network connection', 'error')
 
-          }
+                }
+            });
         });
-      });
     });
 
 
@@ -288,63 +364,165 @@
 
 
 
-    $(function(){
-        $('#personalinformation').submit(function(event){
-          event.preventDefault();
-          let datatopost = $(this).serializeArray();
-          datatopost.push({name: 'personalinformation', value: 1});
-          console.log(datatopost);
+    $(function() {
+        $('#personalinformation').submit(function(event) {
+            event.preventDefault();
+            let datatopost = $(this).serializeArray();
+            datatopost.push({
+                name: 'personalinformation',
+                value: 1
+            });
+            console.log(datatopost);
 
-          $.ajax({
+            $.ajax({
                 url: "{{ route('updateprofile') }}",
                 type: 'POST',
                 data: datatopost,
-                beforeSend:function(){
-                  toastr.info('Updating Personal Information');
+                beforeSend: function() {
+                    toastr.info('Updating Personal Information');
                 },
-                success: function(data){
-                    if(data.trim() == 'success'){
+                success: function(data) {
+                    if (data.trim() == 'success') {
                         toastr.clear();
                         $('.fullname').text($('#fullname').val());
                         swal('Success', "Your personal information has been updated successully", "success");
-                    }else{
+                    } else {
                         toastr.clear();
-                        swal('Unsuccessful!' ,data, 'warning');
+                        swal('Unsuccessful!', data, 'warning');
                     }
                 },
-                error: function(){
-                    swal('Network error','Please check your network connection', 'error');
+                error: function() {
+                    swal('Network error', 'Please check your network connection', 'error');
                 }
             });
         });
 
-        $('#bankdetails').submit(function(event){
-          event.preventDefault();
-          let datatopost = $(this).serializeArray();
-          datatopost.push({name: 'bankdetails', value: 1});
-          console.log(datatopost);
+        $('#bankdetails').submit(function(event) {
+            event.preventDefault();
+            let datatopost = $(this).serializeArray();
+            datatopost.push({
+                name: 'bankdetails',
+                value: 1
+            });
+            console.log(datatopost);
 
-          $.ajax({
+            $.ajax({
                 url: "{{ route('updateprofile') }}",
                 type: 'POST',
                 data: datatopost,
-                beforeSend:function(){
-                  toastr.info('Updating Bank Details');
+                beforeSend: function() {
+                    toastr.info('Updating Bank Details');
                 },
-                success: function(data){
-                    if(data.trim() == 'success'){
+                success: function(data) {
+                    if (data.trim() == 'success') {
                         toastr.clear();
                         swal('Success', "Your bank details has been updated successully", "success");
-                    }else{
+                    } else {
                         toastr.clear();
-                        swal('Unsuccessful!' ,data, 'warning');
+                        swal('Unsuccessful!', data, 'warning');
                     }
                 },
-                error: function(){
-                    swal('Network error','Please check your network connection', 'error');
+                error: function() {
+                    swal('Network error', 'Please check your network connection', 'error');
                 }
             });
         });
-      });
+    });
+</script>
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+<script>
+    Transaction = {
+        tx_ref: null,
+        amount: null,
+        initiateTransaction: function(amount) {
+            this.amount = "{{$settings->activation_price}}";
+            this.generateRefrence();
+            return this.tx_ref;
+        },
+        generateRefrence: function() {
+            let amount = this.amount;
+            $.ajax({
+                type: 'POST',
+                url: "{{route('createtransaction')}}",
+                data: [{
+                    name: 'amount',
+                    value: amount,
+                }],
+                success: (data) => {
+                    Transaction.tx_ref = data;
+                    makePayment();
+                }
+            })
+            return Transaction.tx_ref;
+        },
+        verify: function(data) {
+            data = JSON.stringify(data);
+            console.log(data);
+            $.ajax({
+                type: 'POST',
+                url: "{{route('verifytransaction')}}",
+                data: [{
+                    name: 'transaction',
+                    value: data
+                }],
+                success: (data) => {
+                    if (data == "success") {
+                        swal("Good job!", "Transaction has be successfully processed", "success");
+                        setTimeout(() => {
+                            window.location = "{{route('dashboard')}}"
+                        }, 2000);
+                    } else {
+                        swal("Something went wrong!", data, 'error').then(() => {
+                            window.location = "{{route('dashboard')}}";
+                        });
+                    }
+                }
+            });
+        }
+    }
+
+    function makePayment() {
+
+        let amount = "500";
+        let email = "{{Auth()->user()->email}}";
+        let phone = "{{Auth()->user()->phone}}";
+        let name = "{{Auth()->user()->name}}";
+        let userId = "{{Auth()->user()->id}}";
+
+
+        FlutterwaveCheckout({
+            public_key: "FLWPUBK_TEST-27a5bc7111804b3ff216a3ac266176b7-X",
+            tx_ref: Transaction.tx_ref,
+            amount: amount,
+            currency: "NGN",
+            country: "NG",
+            payment_options: "card, banktransfer, ussd",
+            redirect_url: // specified redirect URL
+                "",
+            meta: {
+                consumer_id: userId,
+                consumer_mac: "92a3-912ba-1192a",
+                amount: amount,
+            },
+            customer: {
+                email: email,
+                phone_number: phone,
+                name: name,
+            },
+            callback: function(data) {
+                console.log(data);
+                Transaction.verify(data);
+            },
+            onclose: function() {
+                // close modal
+            },
+            customizations: {
+                title: "{{$transactionTitle}}",
+                description: "{{$transactionDescription}}",
+                logo: "https://stakescrypto.com/asset/images/logo-gold.png",
+            },
+        });
+
+    }
 </script>
 @endsection

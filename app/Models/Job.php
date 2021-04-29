@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Auth;
 class Job extends Model
 {
     use HasFactory;
+    protected $levels = [];
+
+
+    public function __construct()
+    {
+        $this->levels = config('enums.levels');
+    }
 
     protected $fillable = [
         'title',
@@ -21,7 +28,9 @@ class Job extends Model
         'amount',
         'description',
         'timescompleted',
+        'level',
     ];
+
     protected $casts = [
         'updated_at' => 'datetime',
         'created_at' => 'datetime',
@@ -52,9 +61,16 @@ class Job extends Model
         $job->link = $request->link;
 
         $job->maximum = $request->quantity;
+        $job->setLevel($request->level);
 
         return $job->save() ? 'success' : 'an error occured';
         // return $job->generateFaLogo();
+    }
+
+    public function setLevel($level){
+        if($level == $this->levels['basic']) $this->level = $level;
+        elseif($level == $this->levels['top']) $this->level = $level;
+        else $this->level = $this->levels['basic'];
     }
 
     public function generateFaLogo()
@@ -145,6 +161,15 @@ class Job extends Model
         $jobs = Job::all();
         foreach ($jobs as $job) {
             if($job->isNotCompleted()) array_push($result, $job);
+        }
+        return $result;
+    }
+
+    public static function forUserLevel($level){
+        $result = [];
+        $jobs = Job::where('level', $level)->get();
+        foreach ($jobs as $job) {
+            if($job->isNotCompleted() and !Auth::user()->hasOrdered($job->id)) array_push($result, $job);
         }
         return $result;
     }

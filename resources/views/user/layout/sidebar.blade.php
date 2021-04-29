@@ -12,7 +12,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ Storage::exists('profilepicture/'.Auth::user()->user_id.'.png') ? asset('profilepicture/'.Auth::user()->user_id.'.png?'.rand())  : asset('dist/img/user.svg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{Auth()->user()->name}}</a>
@@ -37,6 +37,12 @@
                 <a href="{{route('dashboard')}}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('userprofile')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Profile</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -87,7 +93,12 @@
                   <p>Create Job</p>
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a href="{{route('viewusers')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Users</p>
+                </a>
+            </li>
             </ul>
           </li>
           @endcan
@@ -107,12 +118,11 @@
                   <i class="fa fa-power-off nav-icon"></i>
                   <p>{{__('Logout')}}</p>
                 </a>
-              </li>
+          </li>
         </ul>
-
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-</form>
+          @csrf
+        </form>
       </nav>
       <!-- /.sidebar-menu -->
     </div>

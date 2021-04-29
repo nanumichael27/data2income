@@ -57,8 +57,7 @@ class PaymentController extends Controller
                   $trans->status = "successful";
                   $trans->save();
                 //   Auth::user()->fundAccount($trans->amount);
-                  Auth::user()->activated = true;
-                  Auth::user()->save();
+                    $this->rewardUser();
                   return 'success';
     
                   //* Continue to give item to the user
@@ -81,12 +80,16 @@ class PaymentController extends Controller
     
     
         }
+
+        public function rewardUser(){
+            Auth::user()->activated = true;
+            Auth::user()->save();
+        }
     
         //returns the refrence of the transaction
         public function createTransaction(Request $request)
         {
-            $amount = $request->amount;
-            $tx_ref = Auth::user()->createTransaction($amount);
+            $tx_ref = Auth::user()->createTransaction($request);
             return $tx_ref;
         }
 } 

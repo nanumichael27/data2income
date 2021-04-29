@@ -41,3 +41,5 @@ Route::get('/user/completedjobs', [UserController::class, 'completedJobs'])->nam
 
 Route::get('/admin/postjob/', [AdminController::class, 'postJob'])->name('postjob');
 Route::post('/admin/postjob/', [AdminController::class, 'createJob'])->name('postjob');
+Route::get('/admin/users/', [AdminController::class, 'viewUsers'])->name('viewusers');
+Route::get('/admin/user/{id}', [AdminController::class, 'viewUser'])->name('viewuser');

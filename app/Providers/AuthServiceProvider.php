@@ -32,5 +32,6 @@ class AuthServiceProvider extends ServiceProvider
                         ? Response::allow()
                         : Response::deny('You must be an administrator to access this page.');
         });
+
     }
 }

@@ -87,7 +87,7 @@
             </div>
             <button class="slide-button button mr-3" ">
               <div class="second">Register</div>
-</button>
+  </button>
             <a class="slide-button button bt-border" href="{{route('login')}}" style="top: 22px;">
               <div class="first">Login</div>
               <div class="second">Login</div>

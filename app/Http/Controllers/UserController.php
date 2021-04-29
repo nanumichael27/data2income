@@ -6,6 +6,8 @@ use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Classes\JobOrganizer;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -13,10 +15,13 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('activated');
+        
     }
 
     public function index(){
-        $jobs = Auth::user()->activeJobs();
+        $organizer = new JobOrganizer(Auth::user());
+        $jobs = $organizer->giveJobs(Auth::user());
         return view('user.dashboard', ['jobs'=> $jobs]);
     }
 
@@ -66,7 +71,8 @@ class UserController extends Controller
     }
 
     public function jobs(){
-        $jobs = Auth::user()->activeJobs();
+        $organizer = new JobOrganizer(Auth::user());
+        $jobs = $organizer->giveJobs(Auth::user());
         return view('user.jobs', ['jobs' => $jobs]);
     }
 
@@ -76,8 +82,9 @@ class UserController extends Controller
     }
 
     public function completedJobs(){
-            $jobs = Auth::user()->getCompletedJobs();
-            return view('user.completedjobs', ['jobs' => $jobs]);
+            $jobOrders = Auth::user()->joborders()->get();
+            // dd($jobOrders);
+            return view('user.completedjobs', ['jobOrders' => $jobOrders]);
     }
 
 }

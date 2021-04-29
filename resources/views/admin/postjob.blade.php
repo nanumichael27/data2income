@@ -16,19 +16,18 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" name='title' class="form-control" id="title" placeholder="Job Title">
+                    <input required type="text" name='title' class="form-control" id="title" placeholder="Job Title">
                   </div>
                   <div class="form-group">
-                  <label>Minimal</label>
-                  <select name="category" id="category" class="form-control select2bs4" style="width: 100%;">
+                  <label>Type</label>
+                  <select required name="category" id="category" class="form-control select2bs4" style="width: 100%;">
                     <option value="Instagram Followers" selected='selected' >Instagram Followers</option>
                                 <option value="Instagram Likes Trial">Instagram Likes (Trial )
                                 </option>
                                 <option value="Instagram Likes">Instagram Likes</option>
                                 <option value="Instagram Comments">Instagram Comments</option>
                                 <option value="Instagram Reels Likes">Instagram Reels Likes</option>
-                                <option value="Instagram Reels Comments">Instagram Reels Comments
-                                </option>
+                                <option value="Instagram Reels Comments">Instagram Reels Comments</option>
                                 <option value="Instagram Views">Instagram Views</option>
                                 <option value="Igtv views">Igtv views</option>
                                 <option value="Instagram reel views">Instagram reel views</option>
@@ -44,6 +43,15 @@
                                 <option value="Instagram Foreign Likes">Instagram Foreign Likes</option>
                                 <option value="YouTube Likes">YouTube Likes</option>
                                 <option value="Youtube Views">Youtube Views</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>User level</label>
+                  <select required name="level" id="level" class="form-control select2bs4" style="width: 100%;">
+                    <!-- <option value="{{config('enums.levels.basic')}}">Basic</option> -->
+                    @foreach(config('enums.levels') as $level => $value)
+                    <option value="{{$value}}">{{$level}}</option>
+                    @endforeach
                   </select>
                 </div>
                 <div id="for_followers">

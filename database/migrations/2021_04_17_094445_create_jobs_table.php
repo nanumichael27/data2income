@@ -26,6 +26,8 @@ class CreateJobsTable extends Migration
             $table->float('amount');
             $table->string('description')->nullable();
             $table->string('status')->nullable()->default('active');
+            $table->string('string')->default('basic');
+            $table->integer('level')->default(1)->nullable();
         });
     }
 

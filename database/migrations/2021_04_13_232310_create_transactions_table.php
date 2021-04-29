@@ -17,11 +17,12 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('transaction_type');
-            $table->string('payment_type');
+            $table->string('payment_method');
             $table->string('status')->default('pending');
             $table->string('tx_ref');
             $table->string('payment_ref')->nullable(true);
             $table->string('user_id');
+            $table->string('description');
             $table->float('amount');
         });
     }

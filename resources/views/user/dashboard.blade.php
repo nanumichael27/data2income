@@ -81,6 +81,7 @@
               <th>Job Title</th>
               <th>Amount(NGN)</th>
               <th>Rate</th>
+              <th>Posted</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -95,6 +96,7 @@
               </td>
               <td>{{$job->amount}}</td>
               <td> {{$job->timescompleted}}/{{$job->maximum}}</td>
+              <td>{{$job->created_at->diffForHumans()}}</td>
               <td>
                 <a type="button" href="{{route('viewjob', $job->id)}}" class="btn bg-gradient-success btn-sm">View</a>
                 <a type="button" class="btn bg-gradient-danger btn-sm">Cancel</a>
@@ -109,6 +111,7 @@
               <th>Job Title</th>
               <th>Amount(NGN)</th>
               <th>Rate</th>
+              <th>Posted</th>
               <th>Action</th>
             </tr>
           </tfoot>

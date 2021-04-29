@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
- /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -49,59 +49,76 @@ class User extends Authenticatable
         'balance' => 'float',
     ];
 
-    public function joborders(){
+    public function joborders()
+    {
         return $this->hasMany(JobOrder::class);
     }
 
-    public function transactions(){
+    public function transactions()
+    {
         return $this->hasMany(Transaction::class);
     }
 
-    public function fundAccount($amount = 0){
-        $this->balance += intval($amount);
-        $this->save();
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
     }
 
-    public function createTransaction($amount){
+    public function fundAccount($amount = 0)
+    {
+        $this->balance += intval($amount);
+        $this->save();
+        return $this->balance;
+    }
+
+    public function createTransaction($request)
+    {
         $tx_ref = Transaction::generateTransactionRefrence();
         $transaction = new Transaction([
-            "amount" => $amount,
-            "transaction_type" => 'fund account',
-            "payment_type" => 'flutterwave',
+            "amount" => $request->amount,
+            "description" => 'fund account',
+            "payment_method" => 'flutterwave',
+            "transaction_type" => 'credit',
             "tx_ref" => $tx_ref,
         ]);
 
         $res = $this->transactions()->save($transaction);
-        if($res) return $tx_ref;
+        if ($res) return $tx_ref;
     }
 
 
-    public function chargeAccount($amount){
+    public function chargeAccount($amount)
+    {
         $this->balance = $this->balance - $amount;
         $this->save();
+        return $this->balance;
     }
 
-    public function getTotalPayments(){
+    public function getTotalPayments()
+    {
         return count($this->transactions);
     }
 
-    public function referUser(User $user){
-
+    public function referUser(User $user)
+    {
     }
 
-    public function getJobs(){
-
+    public function getJobs()
+    {
     }
-    
-    public function numberOfActiveJobs(){
+
+    public function numberOfActiveJobs()
+    {
         return count(Job::active());
     }
 
-    public function numberOfCompletedJobs(){
+    public function numberOfCompletedJobs()
+    {
         return $this->joborders()->count();
     }
 
-    public function getCompletedJobs(){
+    public function getCompletedJobs()
+    {
         $completedJobs = [];
         foreach ($this->joborders as $joborder) {
             array_push($completedJobs, $joborder->job);
@@ -109,17 +126,33 @@ class User extends Authenticatable
         return $completedJobs;
     }
 
-    public function hasOrdered($jobId){
+    public function hasOrdered($jobId)
+    {
         foreach ($this->joborders as $jobOrder) {
-            if($jobOrder->job_id == $jobId) return true; 
+            if ($jobOrder->job_id == $jobId) return true;
         }
         return false;
     }
 
-    public function activeJobs(){
+    public function activeJobs()
+    {
         return Job::active();
     }
 
+    public function getLevel()
+    {
+        switch ($this->level) {
+            case config('enums.levels.basic'):
+                return "Basic";
+                break;
+                
+            case config('enums.levels.top'):
+                return "Top Level";
+                break;
 
-
+            default:
+                return null;
+                break;
+        }
+    }
 }
