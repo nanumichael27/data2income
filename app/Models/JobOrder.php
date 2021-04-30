@@ -30,6 +30,7 @@ class JobOrder extends Model
         return $this->belongsTo(Job::class);
     }
 
+    // reward the owner of a task
     public function rewardUser(){
         $this->refresh();
         if( !$this->rewarded()){
@@ -43,6 +44,7 @@ class JobOrder extends Model
         }
     }
 
+    //check if the task has been rewarded
     public function rewarded(){
         return $this->status == 'activated';
     }

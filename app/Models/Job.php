@@ -156,6 +156,7 @@ class Job extends Model
         return !$this->isCompleted();
     }
 
+    // return all available jobs
     public static function active(){
         $result = [];
         $jobs = Job::all();
@@ -165,6 +166,7 @@ class Job extends Model
         return $result;
     }
 
+    // get tasks for a specific level
     public static function forUserLevel($level){
         $result = [];
         $jobs = Job::where('level', $level)->get();
@@ -172,6 +174,11 @@ class Job extends Model
             if($job->isNotCompleted() and !Auth::user()->hasOrdered($job->id)) array_push($result, $job);
         }
         return $result;
+    }
+
+    // count all available jobs
+    public static function countAllAvailable(){
+        return count(self::active());
     }
 
 }

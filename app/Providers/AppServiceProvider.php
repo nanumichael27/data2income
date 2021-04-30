@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Job;
 use App\Models\Setting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -28,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
         //
         $settings = Setting::findOrFail(1);
         View::share('settings', $settings);
+        $numberOfAvailableJobs = Job::countAllAvailable();
+        View::share('numberOfAvailableJobs', $numberOfAvailableJobs);
     }
 }

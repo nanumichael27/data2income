@@ -87,4 +87,7 @@ class UserController extends Controller
             return view('user.completedjobs', ['jobOrders' => $jobOrders]);
     }
 
+    public function paymentRequests(){
+        return view('user.paymentrequests');
+    }
 }

@@ -35,6 +35,8 @@ Route::post('/createtransaction', [PaymentController::class, 'createTransaction'
 Route::post('/verifytransaction', [PaymentController::class, 'verifyTransaction'])->name('verifytransaction');
 Route::post('/verifyupgrade', [PaymentController::class, 'verifyUpgrade'])->name('verifyupgrade');
 
+Route::get('/payment/requests/', [UserController::class, 'paymentRequests'])->name('paymentrequests');
+
 
 Route::get('/user/availablejobs', [UserController::class, 'jobs'])->name('availablejobs');
 Route::post('/user/createjoborder/', [UserController::class, 'createJobOrder'])->name('createjoborder');

@@ -47,7 +47,7 @@
               <li class="nav-item">
                 <a href="" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p></p>
+                  <p>Inactive</p>
                 </a>
               </li>
             </ul>
@@ -65,12 +65,37 @@
                 <a href="{{route('availablejobs')}}" class="nav-link">
                   <i class="fas fa-lock-open nav-icon"></i>
                   <p>Available Jobs</p>
+                  <span class="right badge badge-danger">{{Auth()->user()->numberOfActiveJobs()}}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('completedjobs')}}" class="nav-link">
                   <i class="fas fa-flag-checkered nav-icon"></i>
                   <p>Completed jobs</p>
+                  <span class="right badge badge-danger">{{Auth()->user()->numberOfCompletedJobs()}}</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="" class="nav-link ">
+              <i class="nav-icon fas fa-money-bill-alt"></i>
+              <p>
+                Payments
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('paymentrequests')}}" class="nav-link">
+                  <i class="fas fa-credit-card nav-icon"></i>
+                  <p>Payment Requests</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('completedjobs')}}" class="nav-link">
+                  <i class="fas fa-flag-checkered nav-icon"></i>
+                  <p></p>
                 </a>
               </li>
             </ul>

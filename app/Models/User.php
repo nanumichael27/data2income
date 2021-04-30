@@ -64,6 +64,10 @@ class User extends Authenticatable
         return $this->hasMany(Message::class);
     }
 
+    public function paymentRequests(){
+        return $this->hasMany(PaymentRequest::class);
+    }
+
     public function fundAccount($amount = 0)
     {
         $this->balance += intval($amount);
@@ -159,5 +163,20 @@ class User extends Authenticatable
     public function upgradeToTop(){
         $this->level = config('enums.levels.top');
         return $this->save();
+    }
+
+    public function lastWithdrawal(){
+
+    }
+
+    public function requestWithdrawal($amount){
+        if($this->balance >= $amount && $amount > 1000){
+            $this->paymentRequests()->create([
+                'amount' => $amount,
+            ]);
+            return 'success';
+        }else{
+            return 'The minmum withdrawal balance is 1000 Naira';
+        }
     }
 }
