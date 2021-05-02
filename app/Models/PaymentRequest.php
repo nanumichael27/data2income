@@ -9,13 +9,18 @@ class PaymentRequest extends Model
 {
     use HasFactory;
 
-    public $casts = [
+    protected $fillable = [
+        'amount',
+        'status',
+    ];
+
+    protected $casts = [
         'updated_at' => 'datetime',
         'created_at' => 'datetime',
     ];
 
     public function user()
-    {
+    { 
         return $this->belongsTo(User::class);
     }
 }

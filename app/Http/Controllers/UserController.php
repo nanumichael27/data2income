@@ -82,12 +82,18 @@ class UserController extends Controller
     }
 
     public function completedJobs(){
-            $jobOrders = Auth::user()->joborders()->get();
+            $jobOrders = Auth::user()->joborders()->get()->orderBy('id', 'desc');
             // dd($jobOrders);
             return view('user.completedjobs', ['jobOrders' => $jobOrders]);
     }
 
     public function paymentRequests(){
         return view('user.paymentrequests');
+    }
+
+    public function requestPayment(Request $request){
+        $amount = $request->amount;
+        $result = Auth::user()->requestPayment($amount);
+        return $result === true? 'success' : $result; 
     }
 }

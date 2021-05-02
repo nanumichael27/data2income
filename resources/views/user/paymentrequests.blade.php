@@ -95,25 +95,33 @@
                 </button>
             </div>
             <div class="modal-body">
-            <div class="card card-primary card-outline">
-            <div class="card-body box-profile">
-
-
-                <ul class="list-group list-group-unbordered mb-3">
-                    <li class="list-group-item">
-                        <strong>Balance</strong>
-                        <b></b> <strong class="float-right">₦{{Auth()->user()->balance}}</strong>
-                    </li>
-                </ul>
-
-                <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
-            </div>
-            <!-- /.card-body -->
-        </div>
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <strong>Balance</strong>
+                                <b></b> <strong class="float-right">₦{{Auth()->user()->balance}}</strong>
+                            </li>
+                        </ul>
+                        <div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">₦</span>
+                                </div>
+                                <input type="number" id="paymentAmount" class="form-control" min="200" value="1000" placeholder="Request Payment(₦)">
+                            </div>
+                            <br>
+                            <div>
+                                <p>please ensure that your <a href="{{route('userprofile')}}">profile</a> details is up to date before you make a withdrawal request.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="button" onclick="submitWithdrawalRequest()" class="btn btn-primary">Submit</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -138,5 +146,30 @@
         });
 
     });
+
+    function submitWithdrawalRequest() {
+        var amount = $('#paymentAmount').val();
+        $.ajax({
+            url: "{{route('requestpayment')}}",
+            type: 'POST',
+            data: [{
+                name: 'amount',
+                value: amount
+            }],
+            success: function(data){
+                if (data == 'success') {
+                    swal('successful!', 'Your request was placed',
+                    'success').then(() => {
+                        window.location = "{{route('paymentrequests')}}";
+                    });
+                } else {
+                    swal('Info!', data, 'info');
+                }
+            },
+            error: () => {
+                swal("Oops! Something went wrong!", 'please check your network connection', 'error');
+            }
+        });
+    }
 </script>
 @endsection

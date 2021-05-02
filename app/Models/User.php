@@ -51,12 +51,12 @@ class User extends Authenticatable
 
     public function joborders()
     {
-        return $this->hasMany(JobOrder::class);
+        return $this->hasMany(JobOrder::class)->orderBy('id', 'desc');
     }
 
     public function transactions()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class)->orderBy('id', 'desc');
     }
 
     public function messages()
@@ -65,7 +65,7 @@ class User extends Authenticatable
     }
 
     public function paymentRequests(){
-        return $this->hasMany(PaymentRequest::class);
+        return $this->hasMany(PaymentRequest::class)->orderBy('id', 'desc');
     }
 
     public function fundAccount($amount = 0)
@@ -85,7 +85,6 @@ class User extends Authenticatable
             "transaction_type" => 'CR',
             "tx_ref" => $tx_ref,
         ]);
-
         $res = $this->transactions()->save($transaction);
         if ($res) return $tx_ref;
     }
@@ -105,6 +104,7 @@ class User extends Authenticatable
 
     public function referUser(User $user)
     {
+        
     }
 
     public function getJobs()
@@ -178,5 +178,21 @@ class User extends Authenticatable
         }else{
             return 'The minmum withdrawal balance is 1000 Naira';
         }
+    }
+
+    public function requestPayment($amount){
+        $minimum = 1000;
+        $result = '';
+        if($this->balance >= $amount && $amount >= $minimum){
+            $this->paymentRequests()->create([
+                'amount' => $amount,
+            ]);
+            $result = true;
+        }elseif($amount < $minimum){
+            $result = "The minimum balance for withdrawal is $minimum";
+        }else{
+            $result = "The amount you are trying to withdraw is higher than your present balance";
+        }
+        return $result;
     }
 }

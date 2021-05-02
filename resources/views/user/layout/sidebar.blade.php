@@ -23,7 +23,26 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+
+          <li class="nav-item">
+            <a href="{{route('dashboard')}}" class="nav-link">
+              <i class="fas fa-tachometer-alt nav-icon"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('userprofile')}}" class="nav-link">
+              <i class="far fa-user nav-icon"></i>
+              <p>Profile</p>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Inactive</p>
+            </a>
+          </li> -->
+          <!-- <li class="nav-item has-treeview menu-open">
             <a href="{{route('dashboard')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -32,27 +51,24 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('dashboard')}}" class="nav-link">
-                  <i class="fas fa-tachometer-alt nav-icon"></i>
-                  <p>Dashboard</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('userprofile')}}" class="nav-link">
-                  <i class="far fa-user nav-icon"></i>
-                  <p>Profile</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive</p>
-                </a>
-              </li>
+
             </ul>
+          </li> -->
+          <li class="nav-item">
+            <a href="{{route('availablejobs')}}" class="nav-link">
+              <i class="fas fa-lock-open nav-icon"></i>
+              <p>Available Jobs</p>
+              <span class="right badge badge-danger">{{Auth()->user()->numberOfActiveJobs()}}</span>
+            </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item">
+            <a href="{{route('completedjobs')}}" class="nav-link">
+              <i class="fas fa-flag-checkered nav-icon"></i>
+              <p>Completed jobs</p>
+              <span class="right badge badge-danger">{{Auth()->user()->numberOfCompletedJobs()}}</span>
+            </a>
+          </li>
+          <!-- <li class="nav-item has-treeview menu-open">
             <a href="" class="nav-link ">
               <i class="nav-icon fas fa-hammer"></i>
               <p>
@@ -61,23 +77,27 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('availablejobs')}}" class="nav-link">
-                  <i class="fas fa-lock-open nav-icon"></i>
-                  <p>Available Jobs</p>
-                  <span class="right badge badge-danger">{{Auth()->user()->numberOfActiveJobs()}}</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('completedjobs')}}" class="nav-link">
-                  <i class="fas fa-flag-checkered nav-icon"></i>
-                  <p>Completed jobs</p>
-                  <span class="right badge badge-danger">{{Auth()->user()->numberOfCompletedJobs()}}</span>
-                </a>
-              </li>
+              
             </ul>
+          </li> -->
+
+
+
+          <li class="nav-item">
+            <a href="{{route('paymentrequests')}}" class="nav-link">
+              <i class="fas fa-credit-card nav-icon"></i>
+              <p>Payment Requests</p>
+            </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <!-- <li class="nav-item">
+            <a href="{{route('completedjobs')}}" class="nav-link">
+              <i class="fas fa-flag-checkered nav-icon"></i>
+              <p></p>
+            </a>
+          </li> -->
+
+
+          <!-- <li class="nav-item has-treeview menu-open">
             <a href="" class="nav-link ">
               <i class="nav-icon fas fa-money-bill-alt"></i>
               <p>
@@ -86,23 +106,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('paymentrequests')}}" class="nav-link">
-                  <i class="fas fa-credit-card nav-icon"></i>
-                  <p>Payment Requests</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('completedjobs')}}" class="nav-link">
-                  <i class="fas fa-flag-checkered nav-icon"></i>
-                  <p></p>
-                </a>
-              </li>
+
             </ul>
-          </li>
+          </li> -->
 
           @can('isAdmin')
-          <li class="nav-item has-treeview menu-open">
+          <!-- <li class="nav-item has-treeview menu-open">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-users-cog"></i>
               <p>
@@ -111,25 +120,26 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('postjob')}}" class="nav-link">
-                  <i class="fas fa-plus nav-icon"></i>
-                  <p>Create Job</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('viewusers')}}" class="nav-link">
-                  <i class="fas fa-users nav-icon"></i>
-                  <p>View Users</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('settings')}}" class="nav-link">
-                  <i class="fas fa-cogs nav-icon"></i>
-                  <p>Settings</p>
-                </a>
-              </li>
+             
             </ul>
+          </li> -->
+          <li class="nav-item">
+            <a href="{{route('postjob')}}" class="nav-link">
+              <i class="fas fa-plus nav-icon"></i>
+              <p>Create Job</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('viewusers')}}" class="nav-link">
+              <i class="fas fa-users nav-icon"></i>
+              <p>View Users</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('settings')}}" class="nav-link">
+              <i class="fas fa-cogs nav-icon"></i>
+              <p>Settings</p>
+            </a>
           </li>
           @endcan
 
