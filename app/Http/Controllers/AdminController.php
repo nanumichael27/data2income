@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\PaymentRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,12 @@ class AdminController extends Controller
     }
 
     public function settings(){
+        return view('admin.settings');
+    }
+
+    public function viewPaymentRequests(){
+        // $paymentRequests = PaymentRequest::findWhere('status', 'pending');
+        $paymentRequests = PaymentRequest::all();
         return view('admin.settings');
     }
 }

@@ -44,3 +44,4 @@ Route::post('/admin/postjob/', [AdminController::class, 'createJob'])->name('pos
 Route::get('/admin/users/', [AdminController::class, 'viewUsers'])->name('viewusers');
 Route::get('/admin/user/{id}', [AdminController::class, 'viewUser'])->name('viewuser');
 Route::get('/admin/settings/', [AdminController::class, 'settings'])->name('settings');
+Route::get('/admin/viewpaymentrequests/', [AdminController::class, 'viewPaymentRequests'])->name('viewpaymentrequests');
