@@ -82,7 +82,7 @@ class UserController extends Controller
     }
 
     public function completedJobs(){
-            $jobOrders = Auth::user()->joborders()->get()->orderBy('id', 'desc');
+            $jobOrders = Auth::user()->joborders()->orderBy('id', 'desc');
             // dd($jobOrders);
             return view('user.completedjobs', ['jobOrders' => $jobOrders]);
     }
