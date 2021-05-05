@@ -10,10 +10,10 @@ Settings <small>(All changes on this page occur live)</small>
 
     </div> -->
     <div class="col-sm-12 col-md-6">
-        <livewire:activation-price :amount='$settings->activation_price'/>
+        @livewire('activation-price', ['amount' => $settings->activation_price])
     </div>
     <div class="col-sm-12 col-md-6">
-        <livewire:top-level-price :amount='$settings->top_level_price' />
+        @livewire('top-level-price', ['amount' => $settings->top_level_price])
     </div>
 </div>
 @endsection

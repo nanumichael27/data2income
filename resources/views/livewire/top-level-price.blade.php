@@ -1,6 +1,5 @@
 <div>
-    {{-- Stop trying to control. --}}
-    <h4>Amount needed to upgrade to top user level</h4>
+    <h6>Amount needed to upgrade to top user level</h6>
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">₦</span>

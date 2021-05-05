@@ -48,6 +48,9 @@
       <a href="{{route('completedjobs')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
+  @can('isAdmin')
+
+  @endcan
   <!-- ./col -->
   <!-- <div class="col-lg-3 col-6 col-sm-12">
     <div class="small-box bg-danger">

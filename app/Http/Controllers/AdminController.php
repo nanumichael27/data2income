@@ -39,8 +39,8 @@ class AdminController extends Controller
     }
 
     public function viewPaymentRequests(){
-        // $paymentRequests = PaymentRequest::findWhere('status', 'pending');
+        // $paymentRequests = PaymentRequest::where('status', 'pending')->get();
         $paymentRequests = PaymentRequest::all();
-        return view('admin.settings');
+        return view('admin.paymentrequests', ['paymentRequests' => $paymentRequests]);
     }
 }

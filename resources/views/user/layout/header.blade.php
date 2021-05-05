@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{ asset('dist/css/croppie.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/toastr.min.css') }}">
-    <livewire:styles />
+    @livewireScripts
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         .btn-rounded {
