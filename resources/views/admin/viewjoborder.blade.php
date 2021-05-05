@@ -1,12 +1,11 @@
 @extends('user.layout.layout')
 
-@section('title', 'Payment Request')
+@section('title', 'Job Order')
 
 @section('content')
 <div class="row">
     <div class="col-12">
-       @livewire('payment-request', ['request' => $request])
-       
+       @livewire('job-order', ['jobOrder' => $jobOrder])
     </div>
 
 </div>

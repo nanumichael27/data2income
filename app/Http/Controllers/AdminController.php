@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\JobOrder;
 use App\Models\PaymentRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -42,5 +43,15 @@ class AdminController extends Controller
         // $paymentRequests = PaymentRequest::where('status', 'pending')->get();
         $paymentRequests = PaymentRequest::all();
         return view('admin.paymentrequests', ['paymentRequests' => $paymentRequests]);
+    }
+
+    public function viewPaymentRequest($id){
+        $request = PaymentRequest::findOrFail($id);
+        return view('admin.viewpaymentrequest', ['request' => $request]);
+    }
+
+    public function viewJobOrder($id){
+        $jobOrder = JobOrder::findOrFail($id);
+        return view('admin.viewjoborder', ['jobOrder' => $jobOrder]);
     }
 }

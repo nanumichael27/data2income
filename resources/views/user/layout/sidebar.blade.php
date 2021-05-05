@@ -141,12 +141,12 @@
               <p>Settings</p>
             </a>
           </li>
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="{{route('viewpaymentrequests')}}" class="nav-link">
-              <i class="fas fa-cogs nav-icon"></i>
+              <i class="fas fa-eye nav-icon"></i>
               <p>View Requests</p>
             </a>
-          </li> -->
+          </li>
           @endcan
 
           <!-- <li class="nav-item">

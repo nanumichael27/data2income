@@ -45,3 +45,5 @@ Route::get('/admin/users/', [AdminController::class, 'viewUsers'])->name('viewus
 Route::get('/admin/user/{id}', [AdminController::class, 'viewUser'])->name('viewuser');
 Route::get('/admin/settings/', [AdminController::class, 'settings'])->name('settings');
 Route::get('/admin/viewpaymentrequests/', [AdminController::class, 'viewPaymentRequests'])->name('viewpaymentrequests');
+Route::get('/admin/viewrequest/{id}/', [AdminController::class, 'viewPaymentRequest'])->name('viewpaymentrequest');
+Route::get('/admin/viewjoboreder/{id}/', [AdminController::class, 'viewJobOrder'])->name('viewjoborder');

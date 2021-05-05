@@ -75,6 +75,13 @@ class User extends Authenticatable
         return $this->balance;
     }
 
+    public function chargeAccount($amount)
+    {
+        $this->balance = $this->balance - $amount;
+        $this->save();
+        return $this->balance;
+    }
+    
     public function createTransaction($request)
     {
         $tx_ref = Transaction::generateTransactionRefrence();
@@ -87,14 +94,6 @@ class User extends Authenticatable
         ]);
         $res = $this->transactions()->save($transaction);
         if ($res) return $tx_ref;
-    }
-
-
-    public function chargeAccount($amount)
-    {
-        $this->balance = $this->balance - $amount;
-        $this->save();
-        return $this->balance;
     }
 
     public function getTotalPayments()

@@ -49,5 +49,17 @@ class JobOrder extends Model
         return $this->status == 'activated';
     }
 
+    public function pend(){
+        $this->status = 'pending';
+        $this->user->chargeAccount($this->job->amount);
+        $this->save();
+    }
+
+    public function approve(){
+        $this->status = 'approved';
+        $this->user->fundAccount($this->job->amount);
+        $this->save();
+    }
+
 
 }

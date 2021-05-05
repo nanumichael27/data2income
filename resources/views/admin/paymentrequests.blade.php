@@ -31,7 +31,7 @@
                             <td>₦{{$request->amount}}</td>
                             <td>{{$request->status}}</td>
                             <td>
-                                <a type="button" href="{{route('viewuser', $request->id)}}" class="btn bg-gradient-success btn-sm">View Request</a>
+                                <a type="button" href="{{route('viewpaymentrequest', $request->id)}}" class="btn bg-gradient-success btn-sm">View Request</a>
                             </td>
                         </tr>
                         @endforeach

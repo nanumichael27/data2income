@@ -144,7 +144,7 @@
               <td> {{$job->timescompleted}}/{{$job->maximum}}</td>
               <td>{{$jobOrder->created_at->diffForHumans()}}</td>
               <td>
-                <a type="button" href="{{route('viewjob', $job->id)}}" class="btn bg-gradient-success btn-sm">View</a>
+                <a type="button" href="{{route('viewjoborder', $jobOrder->id)}}" class="btn bg-gradient-success btn-sm">View Order</a>
                 <a type="button" class="btn bg-gradient-danger btn-sm">Cancel</a>
               </td>
             </tr>
