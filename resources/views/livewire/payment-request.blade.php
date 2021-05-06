@@ -1,5 +1,7 @@
 <div>
     <div class="card card-primary card-outline">
+    <div wire:loading.flex wire:loading.class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>
+
         <div class="card-body box-profile">
             <h3 class="profile-username text-center">Account Balance</h3>
             <h3 class="profile-username text-center">₦{{$request->user->balance}}</h3>
@@ -37,7 +39,7 @@
                     <b></b> <a class="float-right">{{$request->user->sortcode}}</a>
                 </li>
             </ul>
-            <button class="btn {{$class}} btn-rounded" wire:loading.remove wire:click='toggleStatus'><b>{{$action}}</b></button>
+            <button class="btn {{$class}} btn-rounded" wire:click='toggleStatus'><b>{{$action}}</b></button>
             <a href="{{route('viewuser', $request->user->id)}}" class="float-right btn btn-primary btn-rounded">View User</a>
 
         </div>

@@ -1,6 +1,11 @@
 <div>
     <div>
         <div class="card card-primary card-outline">
+
+           
+            <div wire:loading.flex wire:loading.class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>
+            
+
             <div class="card-body box-profile">
                 <div class="text-center">
                     <i class="{{$jobOrder->job->generateFaLogo()}}" style="font-size: 60px;"></i>
@@ -59,7 +64,7 @@
                         <b></b> <a class="float-right">{{$jobOrder->username}}</a>
                     </li>
                 </ul>
-                <button class="btn {{$class}} btn-rounded" wire:loading.remove wire:click='toggleStatus'><b>{{$action}}</b></button>
+                <button class="btn {{$class}} btn-rounded" wire:click='toggleStatus'><b>{{$action}}</b></button>
                 <a href="{{route('viewuser', $jobOrder->user->id)}}" class="float-right btn btn-primary btn-rounded">View User</a>
 
             </div>
