@@ -68,6 +68,11 @@ class User extends Authenticatable
         return $this->hasMany(PaymentRequest::class)->orderBy('id', 'desc');
     }
 
+    public function conversations(){
+        return $this->hasMany(Conversation::class, 'first_user')
+        ->orWhere('second_user', $this->id);
+    }
+
     public function fundAccount($amount = 0)
     {
         $this->balance += intval($amount);

@@ -58,7 +58,7 @@ class UserController extends Controller
             list($type, $image) = explode(';',$image);
             list(, $image) = explode(',',$image);
             $image = base64_decode($image);
-            $image_name = Auth::user()->user_id.'.png';
+            $image_name = Auth::user()->id.'.png';
             Storage::put('profilepicture/'.$image_name, $image);
             return 'success';
 

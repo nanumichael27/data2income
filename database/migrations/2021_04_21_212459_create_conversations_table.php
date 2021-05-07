@@ -18,7 +18,6 @@ class CreateConversationsTable extends Migration
             $table->timestamps();
             $table->string('first_user');
             $table->string('second_user');
-            $table->string('date_of_last_message');
         });
     }
 

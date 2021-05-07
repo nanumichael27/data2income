@@ -29,7 +29,7 @@
 
                         <div class="box-body box-profile text-center">
                             <label style="cursor: pointer;">
-                                <img class="profile-user-img img-responsive img-circle" id="dp" src="{{ Storage::exists('profilepicture/'.Auth::user()->user_id.'.png') ? asset('profilepicture/'.Auth::user()->user_id.'.png?'.rand())  : asset('dist/img/user.svg') }}" alt="User profile picture" style='width: 165px;'>
+                                <img class="profile-user-img img-responsive img-circle" id="dp" src="{{ Storage::exists('profilepicture/'.Auth::user()->id.'.png') ? asset('profilepicture/'.Auth::user()->id.'.png?'.rand())  : asset('dist/img/user.svg') }}" alt="User profile picture" style='width: 165px;'>
                                 <input type="file" id="profile-picture" style="display: none; ">
                             </label>
                             <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>

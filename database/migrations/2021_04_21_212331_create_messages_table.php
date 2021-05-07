@@ -18,6 +18,8 @@ class CreateMessagesTable extends Migration
             $table->timestamps();
             $table->foreignId('from_user')->onDeleteCascade();
             $table->foreignId('to_user')->onDeleteCascade();
+            $table->foreignId('conversation_id')->onDeleteCascade();
+            $table->text('message');
         });
     }
 
