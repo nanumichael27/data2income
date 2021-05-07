@@ -1,4 +1,4 @@
-<div wire:poll>
+<div wire:poll wire:click='click'>
     {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day --}}
     <a href="#" class="dropdown-item">
             <!-- Message Start -->

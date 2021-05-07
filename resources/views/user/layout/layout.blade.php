@@ -47,6 +47,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <div class="modal fade" id="chatModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h4 class="modal-title">Admin</h4> -->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            @livewire('chat', ['user' => Auth()->user()])
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
     <!-- Control Sidebar -->
     <!-- <aside class="control-sidebar control-sidebar-dark">
@@ -137,6 +155,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
       }
+    </script>
+    <script>
+    window.addEventListener('showChat', event => {
+      $('#chatModal').modal('show');
+    });
     </script>
 
   @livewireScripts

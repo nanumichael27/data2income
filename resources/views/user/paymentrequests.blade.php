@@ -156,10 +156,10 @@
                 name: 'amount',
                 value: amount
             }],
-            success: function(data){
+            success: function(data) {
                 if (data == 'success') {
                     swal('successful!', 'Your request was placed',
-                    'success').then(() => {
+                        'success').then(() => {
                         window.location = "{{route('paymentrequests')}}";
                     });
                 } else {

@@ -19,6 +19,11 @@ class Conversation extends Component
         }
     }
 
+    public function click(){
+        $this->emitTo('chat', 'updateUser', $this->otherUser);
+        $this->dispatchBrowserEvent('showChat');
+    }
+
     public function render()
     {
         return view('livewire.conversation');

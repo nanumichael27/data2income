@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Conversation;
 use App\Models\Message;
+use App\Models\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -54,6 +55,11 @@ class Chat extends Component
             $conversation->messages()->save($message);
         }
         $this->message = '';
+        $this->mount();
+    }
+
+    public function updateUser(User $user){
+        $this->user = $user;
         $this->mount();
     }
 
