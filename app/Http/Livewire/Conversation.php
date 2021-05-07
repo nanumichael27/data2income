@@ -20,7 +20,7 @@ class Conversation extends Component
     }
 
     public function click(){
-        $this->emitTo('chat', 'updateUser', $this->otherUser);
+        $this->emitTo('chat', 'updateUser',  $this->otherUser->id);
         $this->dispatchBrowserEvent('showChat');
     }
 

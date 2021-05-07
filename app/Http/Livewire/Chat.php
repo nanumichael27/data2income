@@ -16,12 +16,14 @@ class Chat extends Component
     public $message = '';
     public $messages = [];
 
+    protected $listeners = ['updateUser'];
+
     public function mount()
     {
         $oldConversation = Conversation::where('first_user', Auth::user()->id)
             ->where('second_user', $this->user->id)
-            ->orWhere('first_user', Auth::user()->id)
-            ->where('second_user', $this->user->id)
+            ->orWhere('first_user', $this->user->id)
+            ->where('second_user', Auth::user()->id)
             ->get()->first();
             if($oldConversation){
                 $this->messages=$oldConversation->messages;
@@ -58,8 +60,8 @@ class Chat extends Component
         $this->mount();
     }
 
-    public function updateUser(User $user){
-        $this->user = $user;
+    public function updateUser($id){
+        $this->user = User::find($id);
         $this->mount();
     }
 

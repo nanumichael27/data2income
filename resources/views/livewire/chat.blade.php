@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.visible>
   <!-- DIRECT CHAT PRIMARY -->
   <div class="card card-prirary cardutline direct-chat direct-chat-primary">
     <div class="card-header">
@@ -27,7 +27,7 @@
         <div class="direct-chat-msg">
           <div class="direct-chat-infos clearfix">
             <span class="direct-chat-name float-left">{{$msg->fromUser->name}}</span>
-            <span class="direct-chat-timestamp float-right" wire:poll>{{$msg->created_at->diffForHumans()}}</span>
+            <span class="direct-chat-timestamp float-right" >{{$msg->created_at->diffForHumans()}}</span>
           </div>
           <!-- /.direct-chat-infos -->
           <img class="direct-chat-img" src="{{ Storage::exists('profilepicture/'.$msg->fromUser->id.'.png') ? asset('profilepicture/'.$msg->fromUser->id.'.png?'.rand())  : asset('dist/img/user.svg') }}" alt="Message User Image">
@@ -43,7 +43,7 @@
         <div class="direct-chat-msg right">
           <div class="direct-chat-infos clearfix">
             <span class="direct-chat-name float-right">{{$msg->fromUser->name}}</span>
-            <span class="direct-chat-timestamp float-left" wire:poll>{{$msg->created_at->diffForHumans()}}</span>
+            <span class="direct-chat-timestamp float-left" >{{$msg->created_at->diffForHumans()}}</span>
           </div>
           <!-- /.direct-chat-infos -->
           <img class="direct-chat-img" src="{{ Storage::exists('profilepicture/'.$msg->fromUser->id.'.png') ? asset('profilepicture/'.$msg->fromUser->id.'.png?'.rand())  : asset('dist/img/user.svg') }}" alt="Message User Image">
