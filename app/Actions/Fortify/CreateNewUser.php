@@ -33,9 +33,11 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return User::create([
+            'user_id' => User::generateUUID(),
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'referred_by' => $input['referral'],
         ]);
     }
 }

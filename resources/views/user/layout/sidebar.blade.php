@@ -89,6 +89,18 @@
               <p>Payment Requests</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('referrals')}}" class="nav-link">
+              <i class="fas fa-link nav-icon"></i>
+              <p>Referrals</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('user.tickets')}}" class="nav-link">
+              <i class="fas fa-hammer nav-icon"></i>
+              <p>Disputes</p>
+            </a>
+          </li>
           <!-- <li class="nav-item">
             <a href="{{route('completedjobs')}}" class="nav-link">
               <i class="fas fa-flag-checkered nav-icon"></i>
@@ -145,6 +157,12 @@
             <a href="{{route('viewpaymentrequests')}}" class="nav-link">
               <i class="fas fa-eye nav-icon"></i>
               <p>View Requests</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('admin.tickets')}}" class="nav-link">
+              <i class="fas fa-eye nav-icon"></i>
+              <p>View Disputes</p>
             </a>
           </li>
           @endcan

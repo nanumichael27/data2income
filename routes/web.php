@@ -30,6 +30,10 @@ Route::get('/user/availablejobs', [UserController::class, 'jobs'])->name('availa
 Route::post('/user/createjoborder/', [UserController::class, 'createJobOrder'])->name('createjoborder');
 Route::get('/user/completedjobs', [UserController::class, 'completedJobs'])->name('completedjobs');
 Route::post('/user/requestpayment/', [UserController::class, 'requestPayment'])->name('requestpayment');
+Route::get('/user/referrals/', [UserController::class, 'referrals'])->name('referrals');
+Route::get('/user/tickets/', [UserController::class, 'tickets'])->name('user.tickets');
+Route::post('/user/tickets/create', [UserController::class, 'createTicket'])->name('user.createticket');
+Route::get('/user/ticket/{id}/', [UserController::class, 'ticket'])->name('user.ticket');
 
 
 //Payment routes
@@ -47,3 +51,4 @@ Route::get('/admin/settings/', [AdminController::class, 'settings'])->name('sett
 Route::get('/admin/viewpaymentrequests/', [AdminController::class, 'viewPaymentRequests'])->name('viewpaymentrequests');
 Route::get('/admin/viewrequest/{id}/', [AdminController::class, 'viewPaymentRequest'])->name('viewpaymentrequest');
 Route::get('/admin/viewjoboreder/{id}/', [AdminController::class, 'viewJobOrder'])->name('viewjoborder');
+Route::get('/admin/tickets/', [AdminController::class, 'tickets'])->name('admin.tickets');

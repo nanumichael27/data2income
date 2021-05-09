@@ -1,4 +1,4 @@
-<div wire:poll.visible>
+<div>
   <!-- DIRECT CHAT PRIMARY -->
   <div class="card card-prirary cardutline direct-chat direct-chat-primary">
     <div class="card-header">

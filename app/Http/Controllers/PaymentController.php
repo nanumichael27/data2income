@@ -87,6 +87,7 @@ class PaymentController extends Controller
 
         public function rewardUser(){
             Auth::user()->activated = true;
+            Auth::user()->rewardParentIfReferred();
             Auth::user()->save();
         }
     

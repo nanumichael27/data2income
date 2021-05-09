@@ -54,4 +54,8 @@ class AdminController extends Controller
         $jobOrder = JobOrder::findOrFail($id);
         return view('admin.viewjoborder', ['jobOrder' => $jobOrder]);
     }
+
+    public function tickets(){
+        return view('admin.tickets');
+    }
 }

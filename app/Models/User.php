@@ -64,13 +64,35 @@ class User extends Authenticatable
         return $this->hasMany(Message::class);
     }
 
-    public function paymentRequests(){
+    public function paymentRequests()
+    {
         return $this->hasMany(PaymentRequest::class)->orderBy('id', 'desc');
     }
 
-    public function conversations(){
+    public function myParent(){
+        return $this->hasOne(User::class,'user_id', 'referred_by');
+    }
+
+    public function listOfReferredUsers(){
+        return $this->hasMany(User::class, 'referred_by', 'user_id');
+    }
+
+    public function tickets(){
+        return $this->hasMany(SupportTicket::class);
+    }
+
+    public function rewardParentIfReferred($amount = 50)
+    {
+        if($this->referred_by != ''){
+            $parent = $this->myParent;
+            $parent->fundAccount($amount);
+        }
+    }
+
+    public function conversations()
+    {
         return $this->hasMany(Conversation::class, 'first_user')
-        ->orWhere('second_user', $this->id);
+            ->orWhere('second_user', $this->id);
     }
 
     public function fundAccount($amount = 0)
@@ -86,7 +108,7 @@ class User extends Authenticatable
         $this->save();
         return $this->balance;
     }
-    
+
     public function createTransaction($request)
     {
         $tx_ref = Transaction::generateTransactionRefrence();
@@ -108,7 +130,6 @@ class User extends Authenticatable
 
     public function referUser(User $user)
     {
-        
     }
 
     public function getJobs()
@@ -153,7 +174,7 @@ class User extends Authenticatable
             case config('enums.levels.basic'):
                 return "Basic";
                 break;
-                
+
             case config('enums.levels.top'):
                 return "Top Level";
                 break;
@@ -164,39 +185,70 @@ class User extends Authenticatable
         }
     }
 
-    public function upgradeToTop(){
+    public function upgradeToTop()
+    {
         $this->level = config('enums.levels.top');
         return $this->save();
     }
 
-    public function lastWithdrawal(){
-
+    public function lastWithdrawal()
+    {
     }
 
-    public function requestWithdrawal($amount){
-        if($this->balance >= $amount && $amount > 1000){
+    public function requestWithdrawal($amount)
+    {
+        if ($this->balance >= $amount && $amount > 1000) {
             $this->paymentRequests()->create([
                 'amount' => $amount,
             ]);
             return 'success';
-        }else{
+        } else {
             return 'The minmum withdrawal balance is 1000 Naira';
         }
     }
 
-    public function requestPayment($amount){
+    public function totalEarned(){
+        $totalEarned = 0;
+        foreach ($this->getCompletedJobs() as $job) {
+            $totalEarned+= $job->amount;
+        }
+        return $totalEarned;
+    }
+
+    public function requestPayment($amount)
+    {
         $minimum = 1000;
         $result = '';
-        if($this->balance >= $amount && $amount >= $minimum){
+        if ($this->balance >= $amount && $amount >= $minimum) {
             $this->paymentRequests()->create([
                 'amount' => $amount,
             ]);
             $result = true;
-        }elseif($amount < $minimum){
+        } elseif ($amount < $minimum) {
             $result = "The minimum balance for withdrawal is $minimum";
-        }else{
+        } else {
             $result = "The amount you are trying to withdraw is higher than your present balance";
         }
         return $result;
+    }
+
+    public function createTicket($request){
+        $this->tickets()->create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'priority' => $request->priority
+        ]);
+        return true;
+    }
+
+    public static function uuidExists($id)
+    {
+        return self::where('user_id', '=', $id)->first() ? true : false;
+    }
+
+    public static function generateUUID()
+    {
+        $unique_id = "D2I" . rand(1000000, 9999999);
+        return self::uuidExists($unique_id) ? self::generateUUID() : $unique_id;
     }
 }

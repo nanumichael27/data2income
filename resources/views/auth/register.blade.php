@@ -81,6 +81,7 @@
             <div class="form-group">
               <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
             </div>
+            <input type="text" name="referral" id="referral" value="{{ Request::get('referral') }}" hidden>
             <div class="form-group form-check mb-4">
               <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
               <label class="form-check-label" for="exampleCheck1">By Clicking register, you agree on our <a href="terms.html"> Terms and Condition </a></label>

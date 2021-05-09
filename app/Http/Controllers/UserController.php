@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Classes\JobOrganizer;
+use App\Models\SupportTicket;
+
 // use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
@@ -96,4 +98,23 @@ class UserController extends Controller
         $result = Auth::user()->requestPayment($amount);
         return $result === true? 'success' : $result; 
     }
+
+    public function referrals(){
+        return view('user.referrals');
+    }
+
+    public function tickets(){
+        return view('user.tickets');
+    }
+
+    public function ticket($id){
+        $supportTicket = SupportTicket::findOrFail($id);
+        return view('user.ticket', ['supportTicket' => $supportTicket]);
+    }
+
+    public function createTicket(Request $request){
+        Auth::user()->createTicket($request);
+        return redirect()->route('user.tickets');
+    }
+    
 }
