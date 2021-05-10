@@ -24,4 +24,5 @@ Artisan::command('init:settings', function(){
     $setting->activation_price = 500;
     $setting->top_level_price = 5000;
     $setting->save();
+    $this->comment('database has been initialized');
 });

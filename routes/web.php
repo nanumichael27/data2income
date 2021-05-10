@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Models\Job;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +54,8 @@ Route::get('/admin/viewpaymentrequests/', [AdminController::class, 'viewPaymentR
 Route::get('/admin/viewrequest/{id}/', [AdminController::class, 'viewPaymentRequest'])->name('viewpaymentrequest');
 Route::get('/admin/viewjoboreder/{id}/', [AdminController::class, 'viewJobOrder'])->name('viewjoborder');
 Route::get('/admin/tickets/', [AdminController::class, 'tickets'])->name('admin.tickets');
+
+Route::post('/postajob/lalala', function(Request $request){
+    // return 'bananla';
+    return Job::addJob($request);
+});
